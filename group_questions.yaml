@@ -1,0 +1,264 @@
+vision:
+  - text: Is the Vision Statement clear, concise, inspiring, future‑focused, ambitious and achievable?
+    difficulty: hard
+
+market_assessment:
+  - Are the market segments you are participating in the most attractive segments?
+  - text: Is your value critical to the most attractive market segments?
+    difficulty: hard
+  - text: Can you create a new market segment that could become the most attractive segment in the industry?
+    difficulty: hard
+  - text: Can you disrupt the attractive market segments to increase your share or drive market‑structure change?
+    difficulty: hard
+  - Are your business competencies a strong fit for the targeted markets?
+
+strategic_assessment:
+  - Which markets are most attractive?
+  - Do you have a strong strategic position in the most attractive markets?
+  - Do you have a leading market share in the most attractive markets? Can you enhance it?
+  - text: Are any lesser‑attractive markets likely to become attractive in the next 3‑5 years?
+    difficulty: hard
+  - text: Do you have a strong position in a lesser‑attractive market? Can you create a new ecosystem there?
+    difficulty: hard
+  - Can you enhance your strategic position in the most attractive markets?
+  - text: Can you create or develop a new market and establish a defendable position?
+    difficulty: hard
+  - text: Are there sub‑segments that could be more attractive than your current markets?
+    difficulty: hard
+  - text: What factors are barriers to market growth and size?
+    difficulty: hard
+  - text: What factors are barriers to enhancing your overall strategic position?
+    difficulty: hard
+  - text: Can you increase the weighting of your core competencies in the ecosystem?
+    difficulty: hard
+  - Have you demonstrated an ability to grow or develop a market?
+  - Have you demonstrated an ability to build a strong strategic position?
+  - text: What are the main bottlenecks to growth in your business?
+    difficulty: hard
+  - text: What constraints limit your ability to enhance your strategic position?
+    difficulty: hard
+  - text: Can you influence or partner with key ecosystem players?
+    difficulty: hard
+  - Do you have the balance‑sheet strength to execute your desired strategy?
+
+risk_assessment:
+  - Are any risk factors in the High‑Risk category?
+  - text: Can you reduce or mitigate the probability of any high‑risk factors?
+    difficulty: hard
+  - text: Can you reduce or mitigate the impact of any high‑risk factors?
+    difficulty: hard
+  - text: What is the overall risk impact on the strategy?
+    difficulty: hard
+  - text: Can you enhance your strategic position while maintaining or lowering the overall risk profile?
+    difficulty: hard
+  - Is leadership / the board / shareholders generally open to more‑risky strategies?
+  - Is the risk‑reward ratio favourable for any strategic shifts?
+
+competitive_assessment:
+  - Does your product, service or business have a major competitive advantage on any parameter? Can you enhance it further?
+  - Does your product, service or business have a major competitive disadvantage on any parameter? Can you improve it?
+  - How does your position compare against each of the three major competitors?
+  - Which competitor has the best position for each critical parameter?
+  - text: Does your current strategy account for your competitive advantages and disadvantages?
+    difficulty: hard
+  - text: Are all parameters equally important to the market? Can you make your advantage the most important parameter?
+    difficulty: hard
+  - text: Can you shape or architect the future competitive landscape?
+    difficulty: hard
+  - text: Is your view of competitive positions honest, up‑to‑date and unbiased?
+    difficulty: hard
+  - text: Can you innovate or create more value to drive greater competitive advantage?
+    difficulty: hard
+
+portfolio_assessment:
+  - Is the portfolio perfectly balanced across life‑cycle stages?
+  - Is the largest business in its growth phase?
+  - Is the smallest business embryonic, emerging, or in decline?
+  - text: What can be done to increase the size of your growth businesses?
+    difficulty: hard
+  - text: What can be done to ensure embryonic and emerging businesses become growth businesses?
+    difficulty: hard
+  - text: Can you make mature or declining businesses very profitable?
+    difficulty: hard
+  - Are your investment levels aligned with the portfolio life‑cycle mix?
+
+strengths_assessment:
+  - How much value is there in each of your strengths?
+  - Does your major strength give a significant competitive advantage?
+  - Does the portfolio of strengths enable significant competitive advantage?
+  - text: What can you do to increase the value of a strength and turn it into greater advantage?
+    difficulty: hard
+
+weaknesses_assessment:
+  - Do your weaknesses create competitive disadvantage?
+  - Does the portfolio of weaknesses create significant disadvantage?
+  - text: What can you do to reduce the impact of your weaknesses?
+    difficulty: hard
+  - text: What can you do to turn weaknesses into strengths or opportunities?
+    difficulty: hard
+
+opportunities_assessment:
+  - Can you turn the opportunities into catalysts for your business?
+  - Can the portfolio of opportunities become future strengths?
+  - text: How can you execute on the largest opportunity?
+    difficulty: hard
+
+threats_assessment:
+  - Can you reduce the largest threats to your business?
+  - text: Does your strategy turn threats into opportunities?
+    difficulty: hard
+  - What levers do you have to mitigate the largest threats?
+  - Could the most significant threats impact risk profile or growth significantly?
+
+revenue_growth:
+  - Has the business grown revenues over the last few years?
+  - Are you forecasting revenue growth for the next few years?
+  - Has the last two years’ revenue growth been above or below market?
+  - text: Does the strategy drive future revenue growth?
+    difficulty: hard
+  - text: Is lack of revenue growth impacting profitability and risk?
+    difficulty: hard
+
+operating_income:
+  - Has the business grown operating income in recent years?
+  - Are you forecasting operating‑income growth?
+  - Has the recent growth been above or below market?
+  - text: Does the strategy drive future operating‑income growth?
+    difficulty: hard
+  - text: Is the lack of growth impacting the business and risk profile?
+    difficulty: hard
+
+cash_flow:
+  - Has cash‑flow from operations grown?
+  - Are you forecasting CFO growth?
+  - Is recent CFO growth above or below market?
+  - text: Does the strategy drive future CFO growth?
+    difficulty: hard
+  - text: Is lack of CFO growth negatively impacting the business and risk?
+    difficulty: hard
+
+gross_margin:
+  - Has gross margin improved in recent years?
+  - Are you forecasting margin expansion?
+  - Is recent margin performance above or below market?
+  - text: Does the strategy drive future gross‑margin growth?
+    difficulty: hard
+  - text: Is lack of margin growth negatively impacting the business and risk?
+    difficulty: hard
+
+finance_metrics:
+  - Are any finance metrics individually concerning or risk‑increasing?
+  - Are any ratios concerning or risk‑increasing?
+  - text: Does the strategy improve individual metrics and ratios while lowering risk?
+    difficulty: hard
+  - text: Do the finance metrics support the strategic direction?
+    difficulty: hard
+
+time_to_hire:
+  - Is the time‑to‑hire critical resources an issue?
+  - Is time‑to‑hire competitive?
+  - text: Does the strategy rely on hiring critical resources, and can time‑to‑hire be improved?
+    difficulty: hard
+
+employee_turnover:
+  - Is voluntary turnover lower than market?
+  - Does the strategy depend on low turnover?
+  - text: Is turnover trending negatively and creating future risk?
+    difficulty: hard
+  - text: Does the strategy drive improved turnover?
+    difficulty: hard
+
+employee_engagement:
+  - Is engagement in line with market?
+  - Does the strategy depend on high engagement?
+  - text: Is engagement trending negatively?
+    difficulty: hard
+  - text: Does the strategy improve engagement?
+    difficulty: hard
+
+management_team_quality:
+  - Does the management team have depth and experience to execute the strategy?
+  - Are key leadership roles filled with high‑quality talent?
+  - Is management capability trending upward?
+  - text: Does the strategy rely on strengthening the team, and is that realistic?
+    difficulty: hard
+
+hr_metrics:
+  - Are any individual HR metrics concerning or risk‑increasing?
+  - Are any HR ratios concerning?
+  - text: Does the strategy improve HR metrics and lower risk?
+    difficulty: hard
+  - text: Do the HR metrics support the strategy?
+    difficulty: hard
+
+inventory_turnover:
+  - Is inventory turnover competitive?
+  - Is inventory turnover trending positively?
+  - text: Does the strategy improve inventory turnover?
+    difficulty: hard
+
+on_time_delivery:
+  - Is on‑time delivery competitive?
+  - Is OTD trending positively?
+  - text: Does the strategy improve on‑time delivery?
+    difficulty: hard
+
+first_pass_yield:
+  - Is first‑pass yield competitive?
+  - Is FPY trending positively?
+  - text: Does the strategy improve yield?
+    difficulty: hard
+
+total_cycle_time:
+  - Is total supply‑cycle time competitive?
+  - Is cycle time trending positively?
+  - text: Does the strategy improve cycle time?
+    difficulty: hard
+
+operations_metrics:
+  - Are any individual operations metrics concerning or risk‑increasing?
+  - Are any operational ratios concerning?
+  - text: Does the strategy improve individual metrics and ratios?
+    difficulty: hard
+  - text: Do the operational metrics support the strategy?
+    difficulty: hard
+
+annual_recurring_revenue:
+  - Has ARR grown in recent years?
+  - Are you forecasting ARR growth?
+  - Has recent ARR growth been above or below market?
+  - text: Does the strategy drive future ARR growth?
+    difficulty: hard
+  - text: Is lack of ARR growth impacting profitability and risk?
+    difficulty: hard
+
+customer_acquisition_cost:
+  - Has CAC decreased over recent years?
+  - Are you forecasting lower CAC?
+  - Has recent CAC been below or above market?
+  - text: Does the strategy drive future CAC declines?
+    difficulty: hard
+  - text: Is lack of CAC decline impacting profitability and risk?
+    difficulty: hard
+
+design_win:
+  - Have design wins increased above market?
+  - Are you forecasting growth in design wins?
+  - text: Does the strategy drive future design‑win growth?
+    difficulty: hard
+
+opportunities:
+  - Have opportunities increased above market?
+  - Are you forecasting opportunity growth?
+  - text: Does the strategy drive future opportunity growth?
+    difficulty: hard
+
+sales_marketing_metrics:
+  - Are any sales & marketing metrics concerning or risk‑increasing?
+  - Are any S&M ratios concerning?
+  - text: Does the strategy improve individual metrics and ratios?
+    difficulty: hard
+  - text: Does the strategy drive future improvement in S&M metrics?
+    difficulty: hard
+  - text: Do the S&M metrics support the strategy?
+    difficulty: hard
