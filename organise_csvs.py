@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-organise_csvs.py  – Stage‑0 pre‑processor for Qmirac CSV drops
+organise_csvs.py – Stage‑0 pre‑processor for Qmirac CSV drops
 
 • Reads every *.csv in  data/raw/
 • Decides which of the 30 blueprint groups it belongs to
@@ -11,71 +11,69 @@ organise_csvs.py  – Stage‑0 pre‑processor for Qmirac CSV drops
 from __future__ import annotations
 import argparse, csv, shutil, sys
 from collections import defaultdict
-from pathlib import Path
-from typing import Dict
+from pathlib     import Path
+from typing      import Dict
 
-# ──────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────
 # 1) Exact filename → group map  (stem must be lowercase, no extension)
-# ──────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────
 FILENAME_MAP: Dict[str, str] = {
     # Finance
-    "revenuegrowthdata": "revenue_growth",
-    "opincomedatatable": "operating_income",
-    "cfodatatable": "cash_flow",
-    "gmdatatable": "gross_margin",
-    "finmetricdatatable": "finance_metrics",
+    "revenuegrowthdata":           "revenue_growth",
+    "opincomedatatable":           "operating_income",
+    "cfodatatable":                "cash_flow",
+    "gmdatatable":                 "gross_margin",
+    "finmetricdatatable":          "finance_metrics",
     # HR
-    "hrtimedatatable": "time_to_hire",
-    "empturndatatable": "employee_turnover",
-    "empengagedatatable": "employee_engagement",
-    "managementdatatable": "management_team_quality",
-    "hrmetricdatatable": "hr_metrics",
+    "hrtimedatatable":             "time_to_hire",
+    "empturndatatable":            "employee_turnover",
+    "empengagedatatable":          "employee_engagement",
+    "managementdatatable":         "management_team_quality",
+    "hrmetricdatatable":           "hr_metrics",
     # OPS
-    "invturndatatable": "inventory_turnover",
-    "otddatatable": "on_time_delivery",
-    "yielddatatable": "first_pass_yield",
-    "cycletimedatatable": "total_cycle_time",
-    "opsmetricdatatable": "operations_metrics",
+    "invturndatatable":            "inventory_turnover",
+    "otddatatable":                "on_time_delivery",
+    "yielddatatable":              "first_pass_yield",
+    "cycletimedatatable":          "total_cycle_time",
+    "opsmetricdatatable":          "operations_metrics",
     # Sales & Marketing
-    "arrdatatable": "annual_recurring_revenue",
-    "cacdatatable": "customer_acquisition_cost",
-    "dwdatatable": "design_win",
-    "oppdatatable": "opportunities_assessment",
-    "swotopddatatable": "opportunities_assessment",  # legacy duplicate
-    "sandmmetricdatatable": "sales_marketing_metrics",
+    "arrdatatable":                "annual_recurring_revenue",
+    "cacdatatable":                "customer_acquisition_cost",
+    "dwdatatable":                 "design_win",
+    "oppdatatable":                "opportunities_assessment",
+    "swotopddatatable":            "opportunities_assessment",  # legacy duplicate
+    "sandmmetricdatatable":        "sales_marketing_metrics",
     # Vision / SWOT misc
-    "swotoppdatatable": "opportunities_assessment",
-    "mybusinessspecdatatable": "vision",
-    "riskdatatable": "risk_assessment",
-    "strengthsdatatable": "strengths_assessment",
-    "weakdatatable": "weaknesses_assessment",
-    "threatdatatable": "threats_assessment",
+    "swotoppdatatable":            "opportunities_assessment",
+    "mybusinessspecdatatable":     "vision",
+    "riskdatatable":               "risk_assessment",
+    "strengthsdatatable":          "strengths_assessment",
+    "weakdatatable":               "weaknesses_assessment",
+    "threatdatatable":             "threats_assessment",
 }
 
 # Family‑pattern stems (market1‑5, stratpos1‑5, …)
-FAMILY_MAP = {
-    "market": "market_assessment",
-    "stratpos": "strategic_assessment",
-}
+FAMILY_MAP = {"market": "market_assessment",
+              "stratpos": "strategic_assessment"}
 
-# ──────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────
 # 2) Fallback header hints
-# ──────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────
 HEADER_HINTS = {
-    "design_win": ["design win"],
-    "management_team_quality": ["management", "team quality"],
+    "design_win":               ["design win"],
+    "management_team_quality":  ["management", "team quality"],
     "opportunities_assessment": ["opportunity"],
 }
 
-# ──────────────────────────────────────────────────────────────────────────
-# Helpers
-# ──────────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────── helpers
 def header_guess(csv_path: Path) -> str | None:
+    """Look at the header row if filename guessing failed."""
     try:
         with csv_path.open("r", encoding="utf-8") as f:
             headers = [h.lower() for h in next(csv.reader(f), [])]
-    except Exception:
+    except (StopIteration, FileNotFoundError, PermissionError, UnicodeDecodeError):
         return None
+
     joined = " ".join(headers)
     for gid, hints in HEADER_HINTS.items():
         if any(h in joined for h in hints):
@@ -84,22 +82,24 @@ def header_guess(csv_path: Path) -> str | None:
 
 
 def route(src: Path, group_id: str, dest_root: Path, *, move: bool) -> None:
-    dest = dest_root / group_id
-    dest.mkdir(parents=True, exist_ok=True)
-    (shutil.move if move else shutil.copy2)(src, dest / src.name)
+    """Copy or move file into its group folder."""
+    dest_dir = dest_root / group_id
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    (shutil.move if move else shutil.copy2)(src, dest_dir / src.name)
 
-
-# ──────────────────────────────────────────────────────────────────────────
-# Core routine
-# ──────────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────── core
 def organise(raw_dir: Path, grouped_dir: Path, *, move: bool) -> None:
     summary, unmapped = defaultdict(int), []
 
-    for csv_path in raw_dir.glob("*.csv"):
-        stem = csv_path.stem.lower()
+    for csv_path in raw_dir.iterdir():
+        if csv_path.suffix.lower() != ".csv":
+            continue                                # ignore non‑CSV drops
+
+        stem_lower = csv_path.stem.lower()
         gid = (
-            FILENAME_MAP.get(stem)
-            or next((g for p, g in FAMILY_MAP.items() if stem.startswith(p)), None)
+            FILENAME_MAP.get(stem_lower)
+            or next((g for p, g in FAMILY_MAP.items()
+                     if stem_lower.startswith(p)), None)
             or header_guess(csv_path)
         )
 
@@ -109,28 +109,28 @@ def organise(raw_dir: Path, grouped_dir: Path, *, move: bool) -> None:
         else:
             unmapped.append(csv_path)
 
-    # ── report ────────────────────────────────────────────────
+    # ─── summary output ──────────────────────────────────────
+    GREEN, RED, END = "\033[92m", "\033[91m", "\033[0m"
     print("\n🗂  CSV grouping summary")
     for gid, n in sorted(summary.items()):
-        print(f"  {gid:25s} : {n} file(s)")
+        print(f"  {GREEN}{gid:25s}{END} : {n} file(s)")
     if unmapped:
-        print("\n⚠️  Unmapped files:")
+        print(f"\n{RED}⚠️  Unmapped files:{END}")
         for p in unmapped:
             print("  •", p.name)
         sys.exit(1)
 
-
-# ──────────────────────────────────────────────────────────────────────────
-# CLI
-# ──────────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────── CLI
 def main() -> None:
     ap = argparse.ArgumentParser(description="Organise raw Qmirac CSVs into group folders")
-    ap.add_argument("-r", "--raw-dir", default="data/raw", help="Source folder with raw CSVs")
-    ap.add_argument("-g", "--grouped-dir", default="data/grouped", help="Destination root")
-    ap.add_argument("--mode", choices=["copy", "move"], default="copy", help="Copy (default) or move files")
+    ap.add_argument("-r", "--raw-dir",     default="data/raw")
+    ap.add_argument("-g", "--grouped-dir", default="data/grouped")
+    ap.add_argument("--mode", choices=["copy", "move"], default="copy",
+                    help="Copy (default) or move files")
     args = ap.parse_args()
-    organise(Path(args.raw_dir), Path(args.grouped_dir), move=(args.mode == "move"))
 
+    organise(Path(args.raw_dir), Path(args.grouped_dir),
+             move=(args.mode == "move"))
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,7 @@
-# group_meta.py  — central place for units / scales
+# group_meta.py  — single source of truth for units / scales
+# ---------------------------------------------------------------------
+NUMERIC_UNITS = {"%", "USD_M", "USD_k", "turns", "days", "num"}   # central list
+
 UNITS = {
     "vision": "score_0_10",
     "market_assessment": "0_100",
@@ -14,8 +17,12 @@ UNITS = {
     "operating_income": "%",
     "cash_flow": "%",
     "gross_margin": "%",
-    # ↓↓↓ changes start here
-    "finance_metrics":     {"value": "num"},     # ‘Value’ column numeric
+
+    # finance / ops tables with generic “Value” column
+    "finance_metrics":    {"value": "num"},
+    "operations_metrics": {"value": "num"},
+
+    # HR / Ops etc.
     "time_to_hire": "days",
     "employee_turnover": "%",
     "employee_engagement": "%",
@@ -25,7 +32,8 @@ UNITS = {
     "on_time_delivery": "%",
     "first_pass_yield": "%",
     "total_cycle_time": "days",
-    "operations_metrics":  {"value": "num"},     # ‘Value’ column numeric
+
+    # Sales & Mkt
     "annual_recurring_revenue": "USD_M",
     "customer_acquisition_cost": "USD_k",
     "design_win": "USD_M",
