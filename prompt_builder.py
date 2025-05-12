@@ -42,16 +42,14 @@ def parse_questions(raw: List) -> Tuple[List[str], int]:
             texts.append(str(item))
     return texts, hard_cnt
 
-# In prompt_builder.py, update the model selection to use local paths
-
-# Replace these with the actual local model paths you have
-MODEL_EASY = "microsoft/phi-3-mini-4k-instruct"
-MODEL_HARD = "deepseek-ai/deepseek-llm-7b-chat"  # Use 33b version if you have it
+# Choose between phi and deepseek-llm for different difficulty levels
+MODEL_EASY = "microsoft/phi-3-mini-4k-instruct"  # Maps to phi:latest
+MODEL_HARD = "deepseek-llm" # Maps to deepseek-llm:latest (4.0 GB)
 
 def choose_model(hard_cnt: int, total: int) -> str:
     """
-    Use the heavyweight model only when a majority (>50%) of questions
-    in the group are tagged 'hard'. Mixed sets stay on phi-3-mini.
+    Use the heavyweight model (deepseek-llm) only when a majority (>50%) of questions
+    in the group are tagged 'hard'. Otherwise use phi.
     """
     return MODEL_HARD if hard_cnt / total > 0.5 else MODEL_EASY
 

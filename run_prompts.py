@@ -19,9 +19,8 @@ MAX_WORKERS = 3  # Adjust based on your M4 Mac's performance
 
 # Map the model names used in prompt_builder.py to Ollama model names
 MODEL_MAP = {
-    "microsoft/phi-3-mini-4k-instruct": "phi3:mini",
-    "deepseek-ai/deepseek-llm-7b-chat": "deepseek-llm:7b",
-    "deepseek-ai/deepseek-llm-33b-chat": "deepseek-llm:33b"
+    "microsoft/phi-3-mini-4k-instruct": "phi:latest",
+    "deepseek-llm": "deepseek-llm:latest"
 }
 
 # Thread-safe SQLite connection
