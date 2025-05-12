@@ -4,75 +4,81 @@ prompt_builder.py – Stage‑2 prompt packager  (override‑aware)
 
 Reads
   • extracted_groups.json
-  • group_questions.yaml          (questions + optional difficulty tag)
+  • group_questions.yaml
 
 Writes
   data/prompts/<group_id>.jsonl   (one record per prompt)
-
-The model tags must match the names you pulled into Ollama, e.g.
-  - phi3:mini
-  - deepseek-llm:7b      ← change to :33b if you loaded the larger one
 """
 
 from __future__ import annotations
-import argparse, json, logging, textwrap
+
+import argparse
+import io
+import json
+import logging
+import textwrap
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 
 import yaml
+
+# ── fast YAML loader (C‑extension if libyaml is present) ───────────────
+try:
+    from yaml import CLoader as YAML_LOADER          # ≈3‑5× faster
+except ImportError:                                  # pure‑Python fallback
+    from yaml import SafeLoader as YAML_LOADER
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s – %(levelname)s – %(message)s")
 log = logging.getLogger("builder")
 
-# ────────────────────────────── YAML helper
+# ────────────────────────────── helper: flatten questions
 def parse_questions(raw: List) -> Tuple[List[str], int]:
     """
-    Flatten a question list.
-    Returns (list_of_text, number_of_hard_questions).
+    Returns ([texts …], hard_count) in a **single pass** for speed.
     """
-    texts: List[str] = []
-    hard_cnt = 0
-    for item in raw:
-        if isinstance(item, dict):                       # {text: “…”, difficulty: hard}
-            texts.append(item["text"])
-            if item.get("difficulty", "easy").lower() == "hard":
-                hard_cnt += 1
-        else:                                            # legacy plain string
-            texts.append(str(item))
-    return texts, hard_cnt
+    texts, hard_flags = zip(
+        *(
+            (
+                item["text"] if isinstance(item, dict) else str(item),
+                1
+                if isinstance(item, dict)
+                and item.get("difficulty", "").lower() == "hard"
+                else 0,
+            )
+            for item in raw
+        )
+    )
+    return list(texts), sum(hard_flags)
 
-# Choose between phi and deepseek-llm for different difficulty levels
-MODEL_EASY = "microsoft/phi-3-mini-4k-instruct"  # Maps to phi:latest
-MODEL_HARD = "deepseek-llm" # Maps to deepseek-llm:latest (4.0 GB)
+
+# ────────────────────────────── model choice
+MODEL_EASY = "microsoft/phi-3-mini-4k-instruct"  # → phi:latest via MODEL_MAP
+MODEL_HARD = "deepseek-llm"                      # → deepseek-llm:latest
 
 def choose_model(hard_cnt: int, total: int) -> str:
-    """
-    Use the heavyweight model (deepseek-llm) only when a majority (>50%) of questions
-    in the group are tagged 'hard'. Otherwise use phi.
-    """
     return MODEL_HARD if hard_cnt / total > 0.5 else MODEL_EASY
 
-# ────────────────────────────── prompt template
-SYSTEM_TMPL = textwrap.dedent("""\
+
+# ────────────────────────────── prompt template strings
+SYSTEM_TMPL = textwrap.dedent(
+    """\
     You are Qmirac’s strategy‑analysis engine. Answer each question ONLY
     with clear, numbered sentences grounded in the data table provided.
     If an answer is not inferable, reply “insufficient data”.
-""")
+"""
+)
 
-def build_user_block(group_id: str,
-                     rows: List[Dict[str, str]],
-                     units,
-                     questions: List[str]) -> str:
-    # show header + first 5 rows to keep prompts compact
+def build_user_block(group_id: str, rows, units, questions: List[str]) -> str:
     header = ", ".join(rows[0].keys())
-    body   = "\n".join(", ".join(map(str, r.values())) for r in rows[:5])
+    body = "\n".join(", ".join(map(str, r.values())) for r in rows[:5])
     csv_block = f"{header}\n{body}"
 
     unit_str = json.dumps(units) if units else "unknown"
-    q_lines  = "\n".join(f"{i+1}. {q}" for i, q in enumerate(questions))
+    q_lines = "\n".join(f"{i+1}. {q}" for i, q in enumerate(questions))
 
-    return textwrap.dedent(f"""\
+    return textwrap.dedent(
+        f"""\
         **Group:** {group_id}
         **Units/Scales:** {unit_str}
 
@@ -83,12 +89,15 @@ def build_user_block(group_id: str,
 
         **Questions:**
         {q_lines}
-    """)
+    """
+    )
+
 
 # ────────────────────────────── main builder
 def build_prompts(data_path: Path, q_path: Path, out_dir: Path) -> None:
-    data   = json.loads(data_path.read_text())
-    q_yaml = yaml.safe_load(q_path.read_text())
+    data = json.loads(data_path.read_text())
+
+    q_yaml = yaml.load(q_path.read_text(), Loader=YAML_LOADER)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     produced = 0
@@ -104,29 +113,34 @@ def build_prompts(data_path: Path, q_path: Path, out_dir: Path) -> None:
             continue
 
         q_texts, hard_cnt = parse_questions(raw_qs)
-        model   = choose_model(hard_cnt, len(q_texts))
-        prompt  = f"{SYSTEM_TMPL}\n\n{build_user_block(gid, rows, data['meta'].get(gid), q_texts)}"
+        model = choose_model(hard_cnt, len(q_texts))
+
+        prompt = (
+            f"{SYSTEM_TMPL}\n\n"
+            f"{build_user_block(gid, rows, data['meta'].get(gid), q_texts)}"
+        )
 
         out_path = out_dir / f"{gid}.jsonl"
-        out_path.write_text(json.dumps({
-            "group_id": gid,
-            "model":    model,
-            "prompt":   prompt
-        }) + "\n")
+        # buffered write (64 KiB) so the disk flushes only once
+        with out_path.open("w", encoding="utf-8", buffering=64 * 1024) as fp:
+            json.dump({"group_id": gid, "model": model, "prompt": prompt}, fp)
+            fp.write("\n")
 
         produced += 1
         log.info("%s – prompt ready → %s  [%s]", gid, out_path.name, model)
 
     log.info("Built %d prompt files", produced)
 
+
 # ────────────────────────────── CLI
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build Qmirac prompts per group")
-    ap.add_argument("-d", "--data",      default="extracted_groups.json")
+    ap.add_argument("-d", "--data", default="extracted_groups.json")
     ap.add_argument("-q", "--questions", default="group_questions.yaml")
-    ap.add_argument("-o", "--out-dir",   default="data/prompts")
+    ap.add_argument("-o", "--out-dir", default="data/prompts")
     args = ap.parse_args()
     build_prompts(Path(args.data), Path(args.questions), Path(args.out_dir))
+
 
 if __name__ == "__main__":
     main()

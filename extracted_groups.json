@@ -1,0 +1,910 @@
+{
+  "timestamp": "2025-05-11T19:29:17",
+  "group_count": 30,
+  "data_points": 200,
+  "meta": {
+    "vision": "score_0_10",
+    "market_assessment": "0_100",
+    "strategic_assessment": "0_100",
+    "risk_assessment": {
+      "prob": "1_5",
+      "impact": "1_9",
+      "derived": "risk_index"
+    },
+    "competitive_assessment": "0_10",
+    "portfolio_assessment": {
+      "position": "0_100",
+      "revenue_share": "%"
+    },
+    "strengths_assessment": "%",
+    "weaknesses_assessment": "%",
+    "opportunities_assessment": {
+      "value": "USD_M",
+      "score": "%"
+    },
+    "threats_assessment": "%",
+    "revenue_growth": "USD_M",
+    "operating_income": "%",
+    "cash_flow": "%",
+    "gross_margin": "%",
+    "finance_metrics": {
+      "value": "num"
+    },
+    "operations_metrics": {
+      "value": "num"
+    },
+    "time_to_hire": "days",
+    "employee_turnover": "%",
+    "employee_engagement": "%",
+    "management_team_quality": "score_0_10",
+    "hr_metrics": "mixed",
+    "inventory_turnover": "turns",
+    "on_time_delivery": "%",
+    "first_pass_yield": "%",
+    "total_cycle_time": "days",
+    "annual_recurring_revenue": "USD_M",
+    "customer_acquisition_cost": "USD_k",
+    "design_win": "USD_M",
+    "sales_opportunities": "USD_M",
+    "sales_marketing_metrics": "mixed"
+  },
+  "groups": {
+    "operations_metrics": [
+      {
+        "Metric": "totalcycletime",
+        "Value": 63.0
+      },
+      {
+        "Metric": "inventoryturnover",
+        "Value": 6.0
+      },
+      {
+        "Metric": "firstpassyield",
+        "Value": 90.0
+      },
+      {
+        "Metric": "ontimedelivery",
+        "Value": 86.0
+      },
+      {
+        "Metric": "overallequipmenteffect",
+        "Value": 75.0
+      },
+      {
+        "Metric": "capacityutilization",
+        "Value": 90.0
+      },
+      {
+        "Metric": "customerreturnrate",
+        "Value": 5.0
+      },
+      {
+        "Metric": "througput",
+        "Value": 80.0
+      },
+      {
+        "Metric": "scraprate",
+        "Value": 8.0
+      },
+      {
+        "Metric": "supplierleadtime",
+        "Value": 33.0
+      }
+    ],
+    "management_team_quality": [
+      {
+        "Year": 2021.0,
+        "Score": 2.0
+      },
+      {
+        "Year": 2022.0,
+        "Score": 4.0
+      },
+      {
+        "Year": 2023.0,
+        "Score": 6.0
+      },
+      {
+        "Year": 2024.0,
+        "Score": 9.0
+      },
+      {
+        "Year": 2025.0,
+        "Score": 1.0
+      }
+    ],
+    "strategic_assessment": [
+      {
+        "Score": "5",
+        "Weight": "1"
+      },
+      {
+        "Score": "4",
+        "Weight": "2"
+      },
+      {
+        "Score": "5",
+        "Weight": "4"
+      },
+      {
+        "Score": "4",
+        "Weight": "7"
+      },
+      {
+        "Score": "5",
+        "Weight": "10"
+      },
+      {
+        "Score": "3",
+        "Weight": "10"
+      },
+      {
+        "Score": "1",
+        "Weight": "4"
+      },
+      {
+        "Score": "3",
+        "Weight": "3"
+      },
+      {
+        "Score": "1",
+        "Weight": "7"
+      },
+      {
+        "Score": "3",
+        "Weight": "1"
+      },
+      {
+        "Score": "5",
+        "Weight": "1"
+      },
+      {
+        "Score": "1",
+        "Weight": "2"
+      },
+      {
+        "Score": "5",
+        "Weight": "4"
+      },
+      {
+        "Score": "1",
+        "Weight": "7"
+      },
+      {
+        "Score": "5",
+        "Weight": "10"
+      },
+      {
+        "Score": "1",
+        "Weight": "1"
+      },
+      {
+        "Score": "2",
+        "Weight": "2"
+      },
+      {
+        "Score": "3",
+        "Weight": "4"
+      },
+      {
+        "Score": "4",
+        "Weight": "7"
+      },
+      {
+        "Score": "5",
+        "Weight": "10"
+      },
+      {
+        "Score": "4",
+        "Weight": "10"
+      },
+      {
+        "Score": "1",
+        "Weight": "3"
+      },
+      {
+        "Score": "4",
+        "Weight": "7"
+      },
+      {
+        "Score": "1",
+        "Weight": "4"
+      },
+      {
+        "Score": "4",
+        "Weight": "1"
+      }
+    ],
+    "opportunities_assessment": [
+      {
+        "Year": "2021",
+        "Value": 33.0
+      },
+      {
+        "Year": "2022",
+        "Value": 80.0
+      },
+      {
+        "Year": "2023",
+        "Value": 40.0
+      },
+      {
+        "Year": "2024",
+        "Value": 90.0
+      },
+      {
+        "Year": "2025",
+        "Value": 150.0
+      },
+      {
+        "Opp": "Price",
+        "Score": 11.0
+      },
+      {
+        "Opp": "Power",
+        "Score": 19.0
+      },
+      {
+        "Opp": "service",
+        "Score": 40.0
+      },
+      {
+        "Opp": "Qlty",
+        "Score": 21.0
+      },
+      {
+        "Opp": "Human Capital",
+        "Score": 9.0
+      }
+    ],
+    "design_win": [
+      {
+        "Year": 2021.0,
+        "Value": 100.0
+      },
+      {
+        "Year": 2022.0,
+        "Value": 30.0
+      },
+      {
+        "Year": 2023.0,
+        "Value": 60.0
+      },
+      {
+        "Year": 2024.0,
+        "Value": 25.0
+      },
+      {
+        "Year": 2025.0,
+        "Value": 33.0
+      }
+    ],
+    "weaknesses_assessment": [
+      {
+        "Weak": "people",
+        "Score": 22.0
+      },
+      {
+        "Weak": "Power",
+        "Score": 8.0
+      },
+      {
+        "Weak": "service",
+        "Score": 40.0
+      },
+      {
+        "Weak": "Qlty",
+        "Score": 26.0
+      },
+      {
+        "Weak": "overhead",
+        "Score": 4.0
+      }
+    ],
+    "competitive_assessment": [],
+    "customer_acquisition_cost": [
+      {
+        "Year": 2021.0,
+        "Cost": 15.0
+      },
+      {
+        "Year": 2022.0,
+        "Cost": 30.0
+      },
+      {
+        "Year": 2023.0,
+        "Cost": 60.0
+      },
+      {
+        "Year": 2024.0,
+        "Cost": 25.0
+      },
+      {
+        "Year": 2025.0,
+        "Cost": 33.0
+      }
+    ],
+    "threats_assessment": [
+      {
+        "Threat": "AI",
+        "Score": 20.0
+      },
+      {
+        "Threat": "Power",
+        "Score": 20.0
+      },
+      {
+        "Threat": "service",
+        "Score": 40.0
+      },
+      {
+        "Threat": "Qlty",
+        "Score": 15.0
+      },
+      {
+        "Threat": "Cash",
+        "Score": 5.0
+      }
+    ],
+    "sales_marketing_metrics": [
+      {
+        "Metric": "ARR",
+        "Value": "63"
+      },
+      {
+        "Metric": "CAC",
+        "Value": "26"
+      },
+      {
+        "Metric": "DWIN",
+        "Value": "200"
+      },
+      {
+        "Metric": "OPP",
+        "Value": "500"
+      },
+      {
+        "Metric": "LEAD2CUST",
+        "Value": "20"
+      },
+      {
+        "Metric": "AVGCUSTOMERVALUE",
+        "Value": "20"
+      },
+      {
+        "Metric": "ROI MKTG",
+        "Value": "10"
+      },
+      {
+        "Metric": "ROI SALES",
+        "Value": "15"
+      },
+      {
+        "Metric": "LEADCONVERSION",
+        "Value": "90"
+      },
+      {
+        "Metric": "CHURN",
+        "Value": "33"
+      }
+    ],
+    "cash_flow": [
+      {
+        "Year": 2021.0,
+        "%": 20.0
+      },
+      {
+        "Year": 2022.0,
+        "%": 30.0
+      },
+      {
+        "Year": 2023.0,
+        "%": 20.0
+      },
+      {
+        "Year": 2024.0,
+        "%": 10.0
+      },
+      {
+        "Year": 2025.0,
+        "%": 5.0
+      }
+    ],
+    "vision": [
+      {
+        "Spec": "cac",
+        "Score": 1.0
+      },
+      {
+        "Spec": "arr",
+        "Score": 9.0
+      },
+      {
+        "Spec": "service",
+        "Score": 1.0
+      },
+      {
+        "Spec": "support",
+        "Score": 9.0
+      },
+      {
+        "Spec": "price",
+        "Score": 1.0
+      }
+    ],
+    "first_pass_yield": [
+      {
+        "Year": 2021.0,
+        "%": 5.0
+      },
+      {
+        "Year": 2022.0,
+        "%": 90.0
+      },
+      {
+        "Year": 2023.0,
+        "%": 95.0
+      },
+      {
+        "Year": 2024.0,
+        "%": 97.0
+      },
+      {
+        "Year": 2025.0,
+        "%": 33.0
+      }
+    ],
+    "hr_metrics": [
+      {
+        "Metric": "avgrecruitcost",
+        "Value": "33"
+      },
+      {
+        "Metric": "avgtimetohire",
+        "Value": "60"
+      },
+      {
+        "Metric": "empengage",
+        "Value": "80"
+      },
+      {
+        "Metric": "traininganddevcost",
+        "Value": "10"
+      },
+      {
+        "Metric": "absenteeismrate",
+        "Value": "5"
+      },
+      {
+        "Metric": "goalachieve",
+        "Value": "90"
+      },
+      {
+        "Metric": "diversity",
+        "Value": "30"
+      },
+      {
+        "Metric": "avgpromotions",
+        "Value": "65"
+      },
+      {
+        "Metric": "spancontrol",
+        "Value": "6"
+      },
+      {
+        "Metric": "avglayers",
+        "Value": "63"
+      }
+    ],
+    "on_time_delivery": [
+      {
+        "Year": 2021.0,
+        "%": 65.0
+      },
+      {
+        "Year": 2022.0,
+        "%": 75.0
+      },
+      {
+        "Year": 2023.0,
+        "%": 80.0
+      },
+      {
+        "Year": 2024.0,
+        "%": 95.0
+      },
+      {
+        "Year": 2025.0,
+        "%": 33.0
+      }
+    ],
+    "total_cycle_time": [
+      {
+        "Year": 2021.0,
+        "Days": 180.0
+      },
+      {
+        "Year": 2022.0,
+        "Days": 90.0
+      },
+      {
+        "Year": 2023.0,
+        "Days": 60.0
+      },
+      {
+        "Year": 2024.0,
+        "Days": 30.0
+      },
+      {
+        "Year": 2025.0,
+        "Days": 33.0
+      }
+    ],
+    "market_assessment": [
+      {
+        "Score": "2",
+        "Weight": "2"
+      },
+      {
+        "Score": "3",
+        "Weight": "2"
+      },
+      {
+        "Score": "4",
+        "Weight": "4"
+      },
+      {
+        "Score": "5",
+        "Weight": "7"
+      },
+      {
+        "Score": "1",
+        "Weight": "10"
+      },
+      {
+        "Score": "3",
+        "Weight": "2"
+      },
+      {
+        "Score": "3",
+        "Weight": "2"
+      },
+      {
+        "Score": "3",
+        "Weight": "4"
+      },
+      {
+        "Score": "3",
+        "Weight": "7"
+      },
+      {
+        "Score": "3",
+        "Weight": "10"
+      },
+      {
+        "Score": "5",
+        "Weight": "2"
+      },
+      {
+        "Score": "1",
+        "Weight": "2"
+      },
+      {
+        "Score": "5",
+        "Weight": "4"
+      },
+      {
+        "Score": "1",
+        "Weight": "7"
+      },
+      {
+        "Score": "5",
+        "Weight": "10"
+      },
+      {
+        "Score": "1",
+        "Weight": "2"
+      },
+      {
+        "Score": "2",
+        "Weight": "2"
+      },
+      {
+        "Score": "1",
+        "Weight": "4"
+      },
+      {
+        "Score": "2",
+        "Weight": "7"
+      },
+      {
+        "Score": "1",
+        "Weight": "10"
+      },
+      {
+        "Score": "4",
+        "Weight": "2"
+      },
+      {
+        "Score": "5",
+        "Weight": "2"
+      },
+      {
+        "Score": "4",
+        "Weight": "4"
+      },
+      {
+        "Score": "3",
+        "Weight": "7"
+      },
+      {
+        "Score": "4",
+        "Weight": "10"
+      }
+    ],
+    "revenue_growth": [
+      {
+        "Year": 2021.0,
+        "Revenue": 50.0
+      },
+      {
+        "Year": 2022.0,
+        "Revenue": 50.0
+      },
+      {
+        "Year": 2023.0,
+        "Revenue": 75.0
+      },
+      {
+        "Year": 2024.0,
+        "Revenue": 150.0
+      },
+      {
+        "Year": 2025.0,
+        "Revenue": 90.0
+      }
+    ],
+    "time_to_hire": [
+      {
+        "Year": 2025.0,
+        "Days": 10.0
+      },
+      {
+        "Year": 2024.0,
+        "Days": 50.0
+      },
+      {
+        "Year": 2023.0,
+        "Days": 10.0
+      },
+      {
+        "Year": 2022.0,
+        "Days": 150.0
+      },
+      {
+        "Year": 2021.0,
+        "Days": 33.0
+      }
+    ],
+    "annual_recurring_revenue": [
+      {
+        "Year": 2021.0,
+        "Revenue": 5.0
+      },
+      {
+        "Year": 2022.0,
+        "Revenue": 75.0
+      },
+      {
+        "Year": 2023.0,
+        "Revenue": 80.0
+      },
+      {
+        "Year": 2024.0,
+        "Revenue": 90.0
+      },
+      {
+        "Year": 2025.0,
+        "Revenue": 33.0
+      }
+    ],
+    "operating_income": [
+      {
+        "Year": 2021.0,
+        "Income": 5.0
+      },
+      {
+        "Year": 2022.0,
+        "Income": 10.0
+      },
+      {
+        "Year": 2023.0,
+        "Income": 90.0
+      },
+      {
+        "Year": 2024.0,
+        "Income": 40.0
+      },
+      {
+        "Year": 2025.0,
+        "Income": 20.0
+      }
+    ],
+    "portfolio_assessment": [],
+    "finance_metrics": [
+      {
+        "Metric": "arr",
+        "Value": 33.0
+      },
+      {
+        "Metric": "ebitda",
+        "Value": 30.0
+      },
+      {
+        "Metric": "grossprofit",
+        "Value": 20.0
+      },
+      {
+        "Metric": "grossmargin",
+        "Value": 60.0
+      },
+      {
+        "Metric": "opmargin",
+        "Value": 25.0
+      },
+      {
+        "Metric": "netassetvalue",
+        "Value": 100.0
+      },
+      {
+        "Metric": "totaldebt",
+        "Value": 15.0
+      },
+      {
+        "Metric": "equityvalue",
+        "Value": 45.0
+      },
+      {
+        "Metric": "currentassets",
+        "Value": 5.0
+      },
+      {
+        "Metric": "currentliabilities",
+        "Value": 33.0
+      }
+    ],
+    "strengths_assessment": [
+      {
+        "Strength": "performance",
+        "Score": 29.0
+      },
+      {
+        "Strength": "Power",
+        "Score": 1.0
+      },
+      {
+        "Strength": "service",
+        "Score": 40.0
+      },
+      {
+        "Strength": "Qlty",
+        "Score": 28.0
+      },
+      {
+        "Strength": "channel",
+        "Score": 2.0
+      }
+    ],
+    "risk_assessment": [
+      {
+        "Prob": "1",
+        "Impact": "9"
+      },
+      {
+        "Prob": "2",
+        "Impact": "1"
+      },
+      {
+        "Prob": "3",
+        "Impact": "9"
+      },
+      {
+        "Prob": "4",
+        "Impact": "1"
+      },
+      {
+        "Prob": "5",
+        "Impact": "9"
+      }
+    ],
+    "employee_turnover": [
+      {
+        "Year": 2021.0,
+        "%": 20.0
+      },
+      {
+        "Year": 2022.0,
+        "%": 60.0
+      },
+      {
+        "Year": 2023.0,
+        "%": 40.0
+      },
+      {
+        "Year": 2024.0,
+        "%": 10.0
+      },
+      {
+        "Year": 2025.0,
+        "%": 5.0
+      }
+    ],
+    "employee_engagement": [
+      {
+        "Year": 2021.0,
+        "%": 33.0
+      },
+      {
+        "Year": 2022.0,
+        "%": 60.0
+      },
+      {
+        "Year": 2023.0,
+        "%": 40.0
+      },
+      {
+        "Year": 2024.0,
+        "%": 10.0
+      },
+      {
+        "Year": 2025.0,
+        "%": 5.0
+      }
+    ],
+    "inventory_turnover": [
+      {
+        "Year": 2021.0,
+        "Amount": 3.0
+      },
+      {
+        "Year": 2022.0,
+        "Amount": 4.0
+      },
+      {
+        "Year": 2023.0,
+        "Amount": 6.0
+      },
+      {
+        "Year": 2024.0,
+        "Amount": 7.0
+      },
+      {
+        "Year": 2025.0,
+        "Amount": 2.0
+      }
+    ],
+    "sales_opportunities": [],
+    "gross_margin": [
+      {
+        "Year": 2021.0,
+        "%": 3.0
+      },
+      {
+        "Year": 2022.0,
+        "%": 45.0
+      },
+      {
+        "Year": 2023.0,
+        "%": 80.0
+      },
+      {
+        "Year": 2024.0,
+        "%": 65.0
+      },
+      {
+        "Year": 2025.0,
+        "%": 33.0
+      }
+    ]
+  }
+}
