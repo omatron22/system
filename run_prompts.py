@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-run_prompts.py – Stage‑3   execute every prompt via Ollama
+run_prompts.py – Stage‑3   execute every prompt via Ollama
 
 * Sends every prompt with the model it was built for.
 * No model fallback – failures are logged, then the run continues.
@@ -16,6 +16,13 @@ OLLAMA_EP  = "http://localhost:11434/api/generate"
 TIMEOUT_S  = 900          # generous – big models can be slow
 PAUSE_S    = 0.5          # short breather between calls
 
+# Map the model names used in prompt_builder.py to Ollama model names
+MODEL_MAP = {
+    "microsoft/phi-3-mini-4k-instruct": "phi3:mini",
+    "deepseek-ai/deepseek-llm-7b-chat": "deepseek-llm:7b",
+    "deepseek-ai/deepseek-llm-33b-chat": "deepseek-llm:33b"
+}
+
 db = sqlite3.connect(STATE_DB)
 db.execute("CREATE TABLE IF NOT EXISTS done (gid TEXT PRIMARY KEY)")
 
@@ -27,10 +34,12 @@ def mark(gid: str) -> None:
     db.commit()
 
 def call_ollama(model: str, prompt: str) -> requests.Response:
+    ollama_model = MODEL_MAP.get(model, model)  # Map to Ollama model name if needed
+    
     return requests.post(
         OLLAMA_EP,
         json={
-            "model":  model,
+            "model":  ollama_model,
             "prompt": prompt,
             "stream": False,
             "options": {"temperature": 0.4}
